@@ -1,3 +1,657 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =====================================================
+   NETFLIX DESIGN SYSTEM - CSS VARIABLES
+   ===================================================== */
+
+
+
+/* @font-face {
+  font-family: 'Netflix Sans';
+  src: url('./assets/fonts/NetflixSans_W_Th.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+} */
+
+:root {
+  /* ==================== COLORS ==================== */
+  
+  /* Primary Colors */
+  --netflix-red: #e50914;
+  --netflix-red-dark: #b20710;
+  --netflix-red-darker: #8b0000;
+  
+  /* Background Colors */
+  --bg-black: #000000;
+  --bg-dark: #141414;
+  --bg-darker: #0a0a0a;
+  --bg-gray: #181818;
+  --bg-gray-light: #2f2f2f;
+  --bg-card: #1a1a1a;
+  
+  /* Text Colors */
+  --text-white: #ffffff;
+  --text-gray: #e5e5e5;
+  --text-gray-dark: #b3b3b3;
+  --text-gray-darker: #808080;
+  --text-muted: #757575;
+  
+  /* Overlay Colors */
+  --overlay-dark: rgba(0, 0, 0, 0.8);
+  --overlay-medium: rgba(0, 0, 0, 0.5);
+  --overlay-light: rgba(0, 0, 0, 0.3);
+  
+  /* Gradient Overlays */
+  --gradient-bottom: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+  --gradient-top: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+  --gradient-left: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 100%);
+  --gradient-radial: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.8) 100%);
+  
+  /* Border Colors */
+  --border-gray: #333333;
+  --border-light: #404040;
+  
+  /* Success/Error */
+  --success-green: #46d369;
+  --error-red: #e87c03;
+  --warning-yellow: #ffa00a;
+  
+
+  /* ==================== TYPOGRAPHY ==================== */
+  
+  /* Font Families */
+  --font-primary: 'Netflix Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-heading: 'Netflix Sans', 'Bebas Neue', Arial, sans-serif;
+  --font-mono: 'Courier New', monospace;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+  --text-7xl: 4.5rem;      /* 72px */
+  
+  /* Font Weights */
+  --weight-thin: 100;
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 900;
+  
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+
+  /* ==================== SPACING ==================== */
+  
+  /* Spacing Scale (Netflix uses 4px base) */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+  
+  /* Container Padding (Responsive) */
+  --padding-mobile: 1rem;       /* 16px */
+  --padding-tablet: 2rem;       /* 32px */
+  --padding-desktop: 3.5rem;    /* 56px */
+  --padding-wide: 4rem;         /* 64px */
+  
+
+  /* ==================== SIZING ==================== */
+  
+  /* Max Widths */
+  --max-width-sm: 640px;
+  --max-width-md: 768px;
+  --max-width-lg: 1024px;
+  --max-width-xl: 1280px;
+  --max-width-2xl: 1536px;
+  --max-width-full: 100%;
+  
+  /* Heights */
+  --header-height: 70px;
+  --header-height-mobile: 56px;
+  --footer-height: 200px;
+  
+  /* Card/Image Aspect Ratios (for padding-bottom trick) */
+  --aspect-16-9: 56.25%;     /* 9/16 * 100 */
+  --aspect-2-3: 150%;        /* 3/2 * 100 */
+  --aspect-4-3: 75%;         /* 3/4 * 100 */
+  --aspect-square: 100%;
+  
+
+  /* ==================== BORDERS & RADIUS ==================== */
+  
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-base: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+  
+  /* Border Widths */
+  --border-1: 1px;
+  --border-2: 2px;
+  --border-4: 4px;
+  
+
+  /* ==================== SHADOWS ==================== */
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-base: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.8);
+  
+
+  /* ==================== TRANSITIONS ==================== */
+  
+  /* Duration */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-medium: 300ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+  
+  /* Easing Functions */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-netflix: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+
+  /* ==================== Z-INDEX LAYERS ==================== */
+  
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-overlay: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+  --z-notification: 80;
+  --z-top: 90;
+  
+
+  /* ==================== BREAKPOINTS ==================== */
+  /* Note: Use these in @media queries */
+  
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+
+  /* ==================== NETFLIX SPECIFIC ==================== */
+  
+  /* Card Hover Scale */
+  --scale-card: 1.08;
+  --scale-button: 1.05;
+  
+  /* Row/Carousel Gaps */
+  --gap-cards: 0.5rem;      /* 8px between cards */
+  --gap-rows: 3rem;         /* 48px between rows */
+  
+  /* Scrollbar */
+  --scrollbar-width: 8px;
+  --scrollbar-color: var(--bg-gray-light);
+  --scrollbar-hover: var(--text-gray-dark);
+}
+
+
+/* =====================================================
+   GLOBAL RESETS & BASE STYLES
+   ===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-normal);
+  color: var(--text-white);
+  background-color: var(--bg-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar (Netflix style) */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
+
+
+/* =====================================================
+   UTILITY CLASSES (Optional - for quick usage)
+   ===================================================== */
+
+/* Text Utilities */
+.text-netflix-red { color: var(--netflix-red); }
+.text-white { color: var(--text-white); }
+.text-gray { color: var(--text-gray); }
+.text-muted { color: var(--text-muted); }
+
+/* Background Utilities */
+.bg-netflix-red { background-color: var(--netflix-red); }
+.bg-black { background-color: var(--bg-black); }
+.bg-dark { background-color: var(--bg-dark); }
+
+/* Spacing Utilities */
+.p-mobile { padding: var(--padding-mobile); }
+.p-desktop { padding: var(--padding-desktop); }
+
+/* Shadow Utilities */
+.shadow-card { box-shadow: var(--shadow-card); }
+
+/* Transition Utilities */
+.transition-netflix {
+  transition: all var(--duration-medium) var(--ease-netflix);
+}
+
+
+/* =====================================================
+   RESPONSIVE CONTAINER
+   ===================================================== */
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--padding-mobile);
+  padding-right: var(--padding-mobile);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--padding-tablet);
+    padding-right: var(--padding-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--padding-desktop);
+    padding-right: var(--padding-desktop);
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    padding-left: var(--padding-wide);
+    padding-right: var(--padding-wide);
+  }
+}
+
+
+/* =====================================================
+   MEDIA QUERIES - ALL SCREEN SIZES
+   ===================================================== */
+
+/* ==================== EXTRA SMALL DEVICES ==================== */
+/* Mobile phones (portrait) - 320px to 479px */
+@media only screen and (max-width: 479px) {
+  :root {
+    /* Adjust font sizes for tiny screens */
+    --text-6xl: 2.5rem;    /* 40px */
+    --text-5xl: 2rem;      /* 32px */
+    --text-4xl: 1.75rem;   /* 28px */
+  }
+  
+  .container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}
+
+
+/* ==================== SMALL DEVICES ==================== */
+/* Mobile phones (landscape) - 480px to 639px */
+@media only screen and (min-width: 480px) and (max-width: 639px) {
+  :root {
+    --text-6xl: 2.75rem;   /* 44px */
+    --text-5xl: 2.25rem;   /* 36px */
+  }
+}
+
+
+/* ==================== MEDIUM DEVICES ==================== */
+/* Tablets (portrait) - 640px to 767px */
+@media only screen and (min-width: 640px) and (max-width: 767px) {
+  .container {
+    max-width: var(--max-width-sm);
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+
+/* ==================== MEDIUM-LARGE DEVICES ==================== */
+/* Tablets (landscape) - 768px to 1023px */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    max-width: var(--max-width-md);
+    padding-left: var(--padding-tablet);
+    padding-right: var(--padding-tablet);
+  }
+}
+
+
+/* ==================== LARGE DEVICES ==================== */
+/* Laptops / Small Desktops - 1024px to 1279px */
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+  .container {
+    max-width: var(--max-width-lg);
+    padding-left: var(--padding-desktop);
+    padding-right: var(--padding-desktop);
+  }
+}
+
+
+/* ==================== EXTRA LARGE DEVICES ==================== */
+/* Desktops / Large Monitors - 1280px to 1535px */
+@media only screen and (min-width: 1280px) and (max-width: 1535px) {
+  .container {
+    max-width: var(--max-width-xl);
+  }
+}
+
+
+/* ==================== 2XL DEVICES ==================== */
+/* Large Desktops / 1080p Monitors - 1536px to 1919px */
+@media only screen and (min-width: 1536px) and (max-width: 1919px) {
+  .container {
+    max-width: var(--max-width-2xl);
+    padding-left: var(--padding-wide);
+    padding-right: var(--padding-wide);
+  }
+}
+
+
+/* ==================== ULTRA WIDE / 4K ==================== */
+/* 4K Monitors / Ultra Wide - 1920px and above */
+@media only screen and (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+    padding-left: 5rem;    /* 80px */
+    padding-right: 5rem;
+  }
+  
+  :root {
+    /* Scale up for very large screens */
+    --text-7xl: 5.5rem;    /* 88px */
+    --text-6xl: 4.25rem;   /* 68px */
+  }
+}
+
+
+/* ==================== ORIENTATION SPECIFIC ==================== */
+
+/* Portrait Mode (Mobile/Tablet) */
+@media only screen and (orientation: portrait) and (max-width: 1023px) {
+  /* Stack content vertically */
+  .row-horizontal {
+    flex-direction: column;
+  }
+  
+  /* Full width cards on portrait */
+  .movie-card {
+    width: 100% !important;
+  }
+}
+
+/* Landscape Mode (Mobile/Tablet) */
+@media only screen and (orientation: landscape) and (max-height: 768px) {
+  /* Reduce vertical spacing */
+  :root {
+    --gap-rows: 2rem;
+  }
+  
+  /* Shorter header on landscape */
+  /* --header-height: 56px; */
+}
+
+
+/* ==================== TOUCH DEVICES ==================== */
+/* Remove hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .movie-card:hover {
+    transform: none;
+  }
+  
+  .netflix-button:hover {
+    transform: none;
+  }
+}
+
+
+/* ==================== HIGH RESOLUTION DISPLAYS ==================== */
+/* Retina / High DPI screens */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+       only screen and (min-resolution: 192dpi) {
+  /* Sharper borders and shadows */
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+
+/* ==================== NETFLIX-SPECIFIC BREAKPOINTS ==================== */
+
+/* Mobile First (Default - 0 to 549px) */
+/* Already covered by base styles */
+
+/* Phablet (550px+) */
+@media only screen and (min-width: 550px) {
+  .cards-per-row-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet (740px+) */
+@media only screen and (min-width: 740px) {
+  .cards-per-row-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Laptop (950px+) */
+@media only screen and (min-width: 950px) {
+  .cards-per-row-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktop (1100px+) */
+@media only screen and (min-width: 1100px) {
+  .cards-per-row-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Large Desktop (1400px+) */
+@media only screen and (min-width: 1400px) {
+  .cards-per-row-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Ultra Wide (1800px+) */
+@media only screen and (min-width: 1800px) {
+  .cards-per-row-7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+
+/* =====================================================
+   RESPONSIVE TYPOGRAPHY SYSTEM
+   ===================================================== */
+
+/* Automatically scale typography based on viewport */
+@media only screen and (max-width: 639px) {
+  /* Small screens - reduce all text sizes */
+  html {
+    font-size: 14px; /* Base becomes 14px instead of 16px */
+  }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 1023px) {
+  /* Medium screens - standard size */
+  html {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  /* Large screens - full size */
+  html {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  /* Extra large screens - slightly bigger */
+  html {
+    font-size: 17px;
+  }
+}
+
+
+/* =====================================================
+   PRINT STYLES
+   ===================================================== */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+
+/* =====================================================
+   USAGE EXAMPLES (Comment out after understanding)
+   ===================================================== */
+
+/*
+EXAMPLE 1: Responsive Hero Section
+.hero-section {
+  padding: var(--space-12) var(--padding-mobile);
+  min-height: 60vh;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-section {
+    padding: var(--space-16) var(--padding-tablet);
+    min-height: 70vh;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .hero-section {
+    padding: var(--space-20) var(--padding-desktop);
+    min-height: 80vh;
+  }
+}
+
+EXAMPLE 2: Responsive Grid
+.movie-grid {
+  display: grid;
+  gap: var(--gap-cards);
+  grid-template-columns: repeat(2, 1fr);  
+}
+
+@media only screen and (min-width: 740px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .movie-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .movie-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+EXAMPLE 3: Responsive Font Sizes
+.hero-title {
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-title {
+    font-size: var(--text-5xl);
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .hero-title {
+    font-size: var(--text-6xl);
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .hero-title {
+    font-size: var(--text-7xl);
+  }
+}
+*/

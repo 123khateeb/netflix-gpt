@@ -1,0 +1,61 @@
+header{
+    width: 100%;
+    max-width: calc(83.3333% - 6rem);
+    padding: 1.5rem;
+    padding-inline: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;;
+    border-bottom: 0.0625rem solid rgba(128, 128, 128, 0.2);
+    margin: auto;
+    margin-top:0;
+    margin-bottom:0;
+}
+
+.header_logo_div{
+    display: flex;
+    width: 9.25rem;
+}
+
+.header_logo{
+    width: 100%;
+    height: 100%;
+
+}
+
+/* Big phones */
+@media (max-width: 481px) {
+    header{
+        padding: 24px;
+        margin: 0;
+        max-width: 100%;
+    }
+    .header_logo_div {
+        width: 5.6rem;
+    }
+}
+
+/* Tablet */
+@media (min-width: 482px) and (max-width: 768px){
+    header{
+        padding-inline: 1rem;
+        margin: 0;
+        max-width: 100%;    
+    }
+}
+
+/* Laptop */
+@media (min-width: 1024px) {
+}
+
+/* Large laptop */
+@media (min-width: 1280px) {
+}
+
+/* Desktop / Mac */
+@media (min-width: 1536px) {
+}
+
+/* Ultra wide */
+@media (min-width: 1920px) {
+}

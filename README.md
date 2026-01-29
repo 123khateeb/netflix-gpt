@@ -2,6 +2,7 @@
 
 - npm create vite@latest
 - Configured TailwindCSS
+- Header
 
 # FEATURES
 - Login/Sign Up 
