@@ -1,12 +1,34 @@
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import "./Login.css";
-import { useState } from "react"; 
+import { useRef, useState } from "react"; 
+import { checkValidData } from "../utils/validate.js"
 
 const Login = () => {
+  // use State Hooks
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  // use Ref Hooks
+  const email = useRef(null);
+  const password = useRef(null);
+  const name = useRef(null);
+  const number = useRef(null);
+
+  //Toggle Sign In/Sign Up form
   const toggleSignInForm = () =>{
     setIsSignInForm(!isSignInForm);
+  }
+
+  //handle Submit
+  const handleButtonClick = () =>{
+    
+    // Validate the form data
+    const message = checkValidData(email.current.value, password.current.value, name.current.value, number.current.value);
+    setErrorMessage(message);
+
+
+    console.log("message", message);
   }
   return (
     <div className="login_main_div">
@@ -16,14 +38,13 @@ const Login = () => {
           Enter your info to  {isSignInForm? "Sign In": "Sign Up"}
         </h1>
         {isSignInForm && <p className="login_sub_heading">Or get started with a new account.</p>}
-        <form action="">
-            {!isSignInForm && (<input type="text" placeholder="Full Name"/>)}
-            {!isSignInForm && (<input type="number" placeholder="Phone Number"/>)}
-            <input type="text" placeholder="Email"/>
-            
-            {/* <p className="login_error">Please enter a valid email or mobile number.</p> */}
-            <input type="password" placeholder="Password"/>
-            <button className="submit_button">{isSignInForm? "sign in": "sign Up"}</button>
+        {errorMessage && <p className="login_error">{errorMessage}</p>}
+        <form action="" onSubmit={(e)=>{e.preventDefault()}}>
+            {!isSignInForm && (<input ref={name} type="text" placeholder="Full Name"/>)}
+            {!isSignInForm && (<input ref={number} type="number" placeholder="Phone Number"/>)}
+            <input ref={email} type="text" placeholder="Email"/>
+            <input ref={password} type="password" placeholder="Password"/>
+            <button className="submit_button" onClick={handleButtonClick}>{isSignInForm? "sign in": "sign Up"}</button>
         </form>
 
         <p className="login_bottom_text"> {isSignInForm?"New to NetFlix ?": "Already Registerd ?"} <span className="signup_link" onClick={toggleSignInForm}>{isSignInForm?"Sign Up Now":"Sign In Now"}</span></p>
