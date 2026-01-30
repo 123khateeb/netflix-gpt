@@ -3,6 +3,8 @@ import Header from "./Header";
 import "./Login.css";
 import { useRef, useState } from "react"; 
 import { checkValidData } from "../utils/validate.js"
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase.js";
 
 const Login = () => {
   // use State Hooks
@@ -27,8 +29,32 @@ const Login = () => {
     const message = checkValidData(email.current.value, password.current.value, name.current.value, number.current.value);
     setErrorMessage(message);
 
+    //If error then stop
+    if(message) return;
 
-    console.log("message", message);
+    //create sihn in or sign up logic
+
+    if (!isSignInForm){
+      //here Sighnup logic
+
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value,)
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+          // ..
+        });
+
+
+    }else{
+      //Here Sign in logic
+    }
   }
   return (
     <div className="login_main_div">
