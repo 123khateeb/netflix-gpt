@@ -56,12 +56,59 @@
     margin-top: 1rem;
 }
 .login_form_outter_div form input{
+    caret-color: rgb(255, 255, 255);
+    height: 3.5rem;
     width: 100%;
-    height: 56px;
-    border-radius: 7px;
+    direction: ltr;
+    padding: 1rem 0.5rem 1rem 2rem;
     background-color: transparent;
-    border: 1px solid white;
+    border-color: #6A676C;
+    border-width: 1px;
+    border-radius: 5px;
+    color: #ffffffb3;
+    margin-top: 1rem;
 }
+.login_error{
+    color: #eb3942;
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    margin-top: 0.4rem;
+    width: 100%;
+}
+
+.submit_button{
+    background-color: #e50914;
+    width:100%;
+    font-size: 1.125rem;
+    font-weight: 500;
+    min-height: 3rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+.submit_button:hover{
+    transition-timing-function: cubic-bezier(0.32, 0.94, 0.6, 1);
+    background: rgb(193, 17, 25);
+}
+.login_bottom_text{
+    margin: 0px;
+    margin-top: 3rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+}
+
+.signup_link{
+    font-size: 1.1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.signup_link:hover{
+    color: #fff;
+}
+
 /* 1. Small phones only (0px to 430px) */
 @media only screen and (max-width: 411px) {
     /* Chhote phones ke liye - iPhone SE, etc */
