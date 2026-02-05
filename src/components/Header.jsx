@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import header_image from "../assets/svg/logo.svg"
 import "./Header.css";
 
-const Header = () => {
+const Header = ({isLoginPage = false}) => {
+ 
   return (
     <header className="">
       <Link to="" className="header_logo_div">
@@ -13,6 +14,9 @@ const Header = () => {
           alt="Netflix logo"
         />
       </Link>
+      {!isLoginPage && (
+        <div>yeh browse header hai </div>
+        )}
     </header>
   );
 };

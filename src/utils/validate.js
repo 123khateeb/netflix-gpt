@@ -1,20 +1,28 @@
-export const checkValidData = (email, password, name, number) =>{
-    const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
-    const isPasswordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/.test(password);
-    const isNameValid = /^[a-zA-Z]+([ \-'][a-zA-Z]+)*$/.test(name);
-    const isNumberValid = /^[2-9]\d{9}$/.test(number);
+// utils/validate.js
+export const checkValidData = (email, password, name, number) => {
+    // Always validate email
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+        return "Email is Not Valid";
+    }
 
-    if(!isEmailValid){
-        return "Email is Not Valid"
+    // Always validate password
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/.test(password)) {
+        return "Password is Not Valid";
     }
-    if(!isPasswordValid){
-        return "Password is Not Valid"
+
+    // Validate name ONLY if it exists / non-empty
+    if (name && name.trim() !== "") {
+        if (!/^[a-zA-Z]+([ \-'][a-zA-Z]+)*$/.test(name)) {
+            return "Enter Valid Name";
+        }
     }
-    if(!isNameValid){
-        return "Enter Valid Name"
+
+    // Validate number ONLY if it exists / non-empty
+    if (number && number.trim() !== "") {
+        if (!/^[2-9]\d{9}$/.test(number)) {
+            return "Enter Valid Number";
+        }
     }
-    if(!isNumberValid){
-        return "Enter Valid Number"
-    }
-    return null;
-}
+
+    return null; // everything is valid
+};

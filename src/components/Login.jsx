@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "./Login.css";
 import { useRef, useState } from "react"; 
 import { checkValidData } from "../utils/validate.js"
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
 
 const Login = () => {
@@ -11,6 +11,10 @@ const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  //use navigate hook 
+
+  const navigate = useNavigate();
+  
   // use Ref Hooks
   const email = useRef(null);
   const password = useRef(null);
@@ -26,7 +30,7 @@ const Login = () => {
   const handleButtonClick = () =>{
     
     // Validate the form data
-    const message = checkValidData(email.current.value, password.current.value, name.current.value, number.current.value);
+    const message = checkValidData(email.current.value, password.current.value, name.current?.value, number.current?.value);
     setErrorMessage(message);
 
     //If error then stop
@@ -42,6 +46,7 @@ const Login = () => {
           // Signed up 
           const user = userCredential.user;
           console.log(user);
+          navigate("/")
           // ...
         })
         .catch((error) => {
@@ -54,11 +59,25 @@ const Login = () => {
 
     }else{
       //Here Sign in logic
+
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value,)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log("User", user);
+        navigate("/browse")
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode + " - " + errorMessage);
+      });
     }
   }
   return (
     <div className="login_main_div">
-      <Header />
+      <Header isLoginPage={true}/>
       <div className="login_form_outter_div">
         <h1 className="login_heading">
           Enter your info to  {isSignInForm? "Sign In": "Sign Up"}

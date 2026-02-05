@@ -60,7 +60,7 @@
     width: 100%;
     direction: ltr;
     padding: 1rem 0.5rem 1rem 2rem;
-    background-color: transparent;
+    background-color: #1D1313;
     border-color: #6A676C;
     border-width: 1px;
     border-radius: 5px;
@@ -71,7 +71,7 @@
 
 /* focus */
 .login_form_outter_div form input:focus {
-  background-color: transparent !important;
+  background-color: #1D1313 !important;
   outline: none;
   box-shadow: none;
 }
