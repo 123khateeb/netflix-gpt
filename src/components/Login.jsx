@@ -3,13 +3,17 @@ import Header from "./Header";
 import "./Login.css";
 import { useRef, useState } from "react"; 
 import { checkValidData } from "../utils/validate.js"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice.js";
 
 const Login = () => {
   // use State Hooks
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const dispatch = useDispatch();
 
   //use navigate hook 
 
@@ -45,9 +49,18 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
-          console.log(user);
-          navigate("/")
-          // ...
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value, photoURL: "https://lh3.googleusercontent.com/a/ACg8ocKM62JLiHG-bdQDetA0PI08AIbLIKfpIBj0rd4sOJGd3WE-y_wF=s96-c"
+            }).then(() => {
+              // Profile updated!
+              const { uid, email, displayName, photoURL} = auth.currentUser;
+              dispatch(addUser({ uid: uid, email: email, displayName: displayName , photoURL: photoURL}));
+              // navigate("/")
+              setIsSignInForm(true)
+            }).catch((error) => {
+              // An error occurred
+              setErrorMessage(error.message);
+          });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -64,7 +77,6 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log("User", user);
         navigate("/browse")
         // ...
       })
