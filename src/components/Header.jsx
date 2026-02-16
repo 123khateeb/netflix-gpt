@@ -1,12 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import header_image from "../assets/svg/logo.svg";
 import { Search, Bell } from "lucide-react";
 import useScreenSize from "../utils/useScreenSize";
 import { auth } from "../utils/firebase";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import "./Header.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const NavLinks = () => {
   const navItems = [
@@ -40,6 +41,7 @@ const NavLinks = () => {
 };
 
 const Header = ({ isLoginPage = false }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -72,13 +74,30 @@ const Header = ({ isLoginPage = false }) => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        navigate("/");
       })
       .catch((error) => {
         // An error happened.
+        
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode + " - " + errorMessage);
         navigate("/error");
       });
   };
+
+
+    useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const { uid, email, displayName, photoURL} = user;
+          dispatch(addUser({ uid: uid, email: email, displayName: displayName , photoURL: photoURL}));
+          navigate("/browse");
+        } else {
+          dispatch(removeUser());
+          navigate("/");
+        }
+      });
+    }, []);
 
   return (
     <>

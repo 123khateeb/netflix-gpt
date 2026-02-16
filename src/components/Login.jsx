@@ -1,4 +1,3 @@
-import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "./Login.css";
 import { useRef, useState } from "react"; 
@@ -14,10 +13,6 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const dispatch = useDispatch();
-
-  //use navigate hook 
-
-  const navigate = useNavigate();
   
   // use Ref Hooks
   const email = useRef(null);
@@ -55,7 +50,7 @@ const Login = () => {
               // Profile updated!
               const { uid, email, displayName, photoURL} = auth.currentUser;
               dispatch(addUser({ uid: uid, email: email, displayName: displayName , photoURL: photoURL}));
-              // navigate("/")
+              
               setIsSignInForm(true)
             }).catch((error) => {
               // An error occurred
@@ -77,7 +72,6 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        navigate("/browse")
         // ...
       })
       .catch((error) => {
