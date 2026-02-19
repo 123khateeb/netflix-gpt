@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from "../utils/firebase.js";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice.js";
+import { USER_AVATAR } from "../utils/constant.js";
 
 const Login = () => {
   // use State Hooks
@@ -45,7 +46,7 @@ const Login = () => {
           // Signed up 
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
-            displayName: name.current.value, photoURL: "https://lh3.googleusercontent.com/a/ACg8ocKM62JLiHG-bdQDetA0PI08AIbLIKfpIBj0rd4sOJGd3WE-y_wF=s96-c"
+            displayName: name.current.value, photoURL: USER_AVATAR // if i want use user image then add input field for image upload and pass here 
             }).then(() => {
               // Profile updated!
               const { uid, email, displayName, photoURL} = auth.currentUser;
